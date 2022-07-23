@@ -1,0 +1,11 @@
+---
+name: 0- Run _Everything_
+on:
+  workflow_dispatch:
+    push:
+      branches: [main]
+    pull_request:
+      branches: [main]
+jobs:
+  test-django:
+    uses: ./.github/workflows/test-django-mysql.yaml

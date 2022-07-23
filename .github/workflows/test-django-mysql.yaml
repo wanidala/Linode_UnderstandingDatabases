@@ -3,10 +3,6 @@ name: 1- Test Django & MySQL
 on:
   workflow_call:
   workflow_dispatch:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
 
 jobs:
   django_mysql:
