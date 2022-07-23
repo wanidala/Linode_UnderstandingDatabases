@@ -17,7 +17,7 @@ jobs:
       MYSQL_TCP_PORT: 3306
       MYSQL_HOST: '127.0.0.1'
       GITHUB_ACTIONS: true
-      DJANGO_SECRET_KEY: test-key-not-good
+      DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
       DATABASE_BACKEND: mysql
     services:
       mysql:
