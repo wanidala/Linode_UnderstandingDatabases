@@ -35,25 +35,25 @@ jobs:
           MYSQL_USER: ${{ env.MYSQL_USER }}
           MYSQL_PASSWORD: ${{ env.MYSQL_ROOT_PASSWORD }}
           MYSQL_ROOT_PASSWORD: ${{ env.MYSQL_ROOT_PASSWORD }}
-          ports:
-            - ${{ env.MYSQL_TCP_PORT }}:${{ env.MYSQL_TCP_PORT }}
-          options:
-            --health-cmd="mysqladmin ping" -health-interval=10s
-        steps:
-          - name: Checkout Code
-            uses: actions/checkout@v2
-          - name: Setup Python 3.10
-            uses: actions/setup-python@v2
-            with: 
-              python-version: "3.10"
-          - name: Install requirements
-            run: |
-              pip install -r requirements.txt
-          - name: Run Tests
-            env:
-              DEBUG: "0"
-              MYSQL_USER: "root"
-              DATABASE_BACKEND: ${{ env.DATABASE_BACKEND }}
-              DJANGO_SECRET_KEY: ${{ env.DJANGO_SECRET_KEY }}
-            run: |
-              python manage.py test
+        ports:
+          - ${{ env.MYSQL_TCP_PORT }}:${{ env.MYSQL_TCP_PORT }}
+        options:
+          --health-cmd="mysqladmin ping" -health-interval=10s
+      steps:
+        - name: Checkout Code
+          uses: actions/checkout@v2
+        - name: Setup Python 3.10
+          uses: actions/setup-python@v2
+          with: 
+            python-version: "3.10"
+        - name: Install requirements
+          run: |
+            pip install -r requirements.txt
+        - name: Run Tests
+          env:
+            DEBUG: "0"
+            MYSQL_USER: "root"
+            DATABASE_BACKEND: ${{ env.DATABASE_BACKEND }}
+            DJANGO_SECRET_KEY: ${{ env.DJANGO_SECRET_KEY }}
+          run: |
+            python manage.py test
